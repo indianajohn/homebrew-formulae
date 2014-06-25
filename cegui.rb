@@ -9,7 +9,7 @@ class Cegui < Formula
   url "http://sourceforge.net/projects/crayzedsgui/files/CEGUI%20Mk-2/0.8/cegui-0.8.2.tar.gz/download"
   sha1 "1e2978517cce280395014b890aa62378213a7c22"
 
-  # depends_on "cmake" => :build
+  depends_on "cmake" => :build
   depends_on "freeimage"
   depends_on "freetype"
   depends_on "jpeg"
@@ -33,7 +33,9 @@ class Cegui < Formula
 
   def install
     # Remove unrecognized options if warned by configure
-    system "cmake", ".", *std_cmake_args
+    system "mkdir build"
+    cd 'build'
+    system "cmake", "..", *std_cmake_args
     system "make", "install" # if this fails, try separate make/make install steps
   end
 
