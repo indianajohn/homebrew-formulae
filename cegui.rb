@@ -35,7 +35,7 @@ class Cegui < Formula
     # Remove unrecognized options if warned by configure
     system "mkdir build"
     cd 'build'
-    system "cmake", "..", *std_cmake_args
+    system "cmake", "..", "-DFREETYPE_DIR=/usr/local", "-DCEGUI_BUILD_PYTHON_MODULES=OFF", *std_cmake_args
     system "make", "install" # if this fails, try separate make/make install steps
   end
 
@@ -96,3 +96,23 @@ index 75a7f06..2972a13 100644
  endmacro()
  
 
+diff --git a/cegui/include/CEGUI/RendererModules/OpenGL/GL3Renderer.h b/cegui/include/CEGUI/RendererModules/OpenGL/GL3Renderer.h
+index 51547fe..217d5aa 100644
+--- a/cegui/include/CEGUI/RendererModules/OpenGL/GL3Renderer.h
++++ b/cegui/include/CEGUI/RendererModules/OpenGL/GL3Renderer.h
+@@ -230,6 +230,7 @@ private:
+         Specifies one of the TextureTargetType enumerated values indicating the
+         desired TextureTarget type to be used.
+     */
++ protected:
+     OpenGL3Renderer();
+ 
+     /*!
+@@ -254,6 +255,7 @@ private:
+     */
+     virtual ~OpenGL3Renderer();
+ 
++ private:
+     //! initialise OGL3TextureTargetFactory that will generate TextureTargets
+     void initialiseTextureTargetFactory();
+ 
