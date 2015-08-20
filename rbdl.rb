@@ -2,12 +2,13 @@
 #                /usr/local/Library/Contributions/example-formula.rb
 # PLEASE REMOVE ALL GENERATED COMMENTS BEFORE SUBMITTING YOUR PULL REQUEST!
 
-class RBDL < Formula
+class Rbdl < Formula
   homepage 'http://rbdl.bitbucket.org/'
   url 'https://bitbucket.org/rbdl/rbdl/get/default.zip'
   version '2.4.0'
+  sha256 "591b407ff0acdb1cb73a922d1335b8e8cded4e0ba476795071f5fb1645e7aa0f"
 
-  depends_on 'cmake'
+  depends_on 'cmake' => :build
   depends_on 'eigen'
 
   def options
