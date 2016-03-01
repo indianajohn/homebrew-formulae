@@ -8,6 +8,8 @@ class G2o < Formula
   depends_on 'cmake'
   depends_on 'eigen'
   depends_on 'suite-sparse'
+  depends_on 'qt' if ARGV.include? '--with_apps'
+  depends_on 'libqglviewer' if ARGV.include? '--with_apps'
 
   def options
     [
@@ -24,11 +26,10 @@ class G2o < Formula
   def install
     args = std_cmake_parameters.split
 
-    if ARGV.include? '--no_apps'
-      args << "-DG2O_BUILD_APPS:BOOL=OFF"
+    if ARGV.include? '--with_apps'
+      args << "-DG2O_BUILD_APPS:BOOL=ON"
     else
-      depends_on 'qt'
-      depends_on 'libqglviewer'
+      args << "-DG2O_BUILD_APPS:BOOL=OFF"
     end
     if ARGV.include? '--deprecated'
       args << "-DG2O_BUILD_DEPRECATED_TYPES:BOOL=ON"
