@@ -8,8 +8,6 @@ class G2o < Formula
   depends_on 'cmake'
   depends_on 'eigen'
   depends_on 'suite-sparse'
-  depends_on 'qt'
-  depends_on 'libqglviewer'
 
   def options
     [
@@ -28,6 +26,9 @@ class G2o < Formula
 
     if ARGV.include? '--no_apps'
       args << "-DG2O_BUILD_APPS:BOOL=OFF"
+    else
+      depends_on 'qt'
+      depends_on 'libqglviewer'
     end
     if ARGV.include? '--deprecated'
       args << "-DG2O_BUILD_DEPRECATED_TYPES:BOOL=ON"
